@@ -1,8 +1,9 @@
-import * as React from 'react';
+import { useState, useEffect } from 'react';
+import React = require('react');
 import './style.css';
 
 export default function App() {
-  const [todos, setTodos] = React.useState(() => {
+  const [todos, setTodos] = useState(() => {
     const savedTodos = localStorage.getItem('todos');
     if (savedTodos) {
       return JSON.parse(savedTodos);
@@ -11,9 +12,9 @@ export default function App() {
     }
   });
 
-  const [todoText, setTodoText] = React.useState('');
+  const [todoText, setTodoText] = useState('');
 
-  React.useEffect(() => {
+  useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
 
