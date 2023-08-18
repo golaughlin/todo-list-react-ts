@@ -27,7 +27,7 @@ export default function App() {
   }
 
   function removeTodo(todo: { id: number }) {
-    const filteredTodos = todos.filter((t) => t.id !== todo.id);
+    const filteredTodos = todos.filter((t: { id: number }) => t.id !== todo.id);
     setTodos([...filteredTodos]);
   }
 
