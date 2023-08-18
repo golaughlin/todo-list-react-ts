@@ -2,6 +2,11 @@ import { useState, useEffect } from 'react';
 import React = require('react');
 import './style.css';
 
+interface Todo {
+  id: number;
+  text: string;
+}
+
 export default function App() {
   const [todos, setTodos] = useState(() => {
     const savedTodos = localStorage.getItem('todos');
@@ -21,17 +26,17 @@ export default function App() {
   function addTodo() {
     if (todoText.trim() === '') return;
 
-    const newTodo = { id: Date.now(), text: todoText };
+    const newTodo: Todo = { id: Date.now(), text: todoText };
     setTodos([...todos, newTodo]);
     setTodoText('');
   }
 
-  function removeTodo(todo: { id: number }) {
-    const filteredTodos = todos.filter((t: { id: number }) => t.id !== todo.id);
+  function removeTodo(todo: Todo) {
+    const filteredTodos = todos.filter((t: Todo) => t.id !== todo.id);
     setTodos([...filteredTodos]);
   }
 
-  const listItems = todos.map((todo) => (
+  const listItems = todos.map((todo: Todo) => (
     <li key={todo.id}>
       {todo.text}&nbsp;
       <button onClick={() => removeTodo(todo)}>❌</button>
